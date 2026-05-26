@@ -60,4 +60,25 @@ public class User {
         this.status = UserStatus.ACTIVE;
         this.createdAt = LocalDateTime.now();
     }
+
+    // 포인트 추가
+    public void addPoint(Integer point) {
+        this.currentPoint += point;
+    }
+    // 경험치 추가
+    public void addExp(Integer earnedExp) {
+        this.exp += earnedExp;
+        checkLevelUp();
+    }
+    // 레벨업 계산 로직
+    private void checkLevelUp() {
+        // 나중에 수학적 기준 세우기!
+        int requiredExp = this.level * 1000;
+        // exp가 레벨업 가능 경험치까지 도달하면, level 갱신
+        while (this.exp>=requiredExp) {
+            this.exp -= requiredExp;
+            this.level++;
+            requiredExp = this.level * 1000;
+        }
+    }
 }

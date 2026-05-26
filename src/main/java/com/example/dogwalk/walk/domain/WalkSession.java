@@ -3,6 +3,7 @@ package com.example.dogwalk.walk.domain;
 import com.example.dogwalk.dog.domain.Dog;
 import com.example.dogwalk.user.domain.User;
 import jakarta.persistence.*;
+import jakarta.transaction.Transactional;
 import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
@@ -46,12 +47,6 @@ public class WalkSession {
     @Column(nullable = false)
     private Integer earnedPoint;
 
-    @Column(nullable = false)
-    private Integer mateWalkBonusPoint;
-
-    @Column(length = 500)
-    private String startPhotoUrl;
-
     @Column(length = 500)
     private String endPhotoUrl;
 
@@ -73,8 +68,30 @@ public class WalkSession {
         this.startLat = startLat;
         this.startLng = startLng;
         this.earnedPoint = 0;
-        this.mateWalkBonusPoint = 0;
         this.verificationStatus = VerificationStatus.NONE;
         this.createdAt = LocalDateTime.now();
     }
+
+    //산책 완료 후 기록
+    public void endWalk(Double endLat, Double endLng, Double totalDistanceMeters) {
+        this.endLat = endLat;
+        this.endLng = endLng;
+        this.endedAt = LocalDateTime.now();
+        this.status = WalkStatus.COMPLETED;
+        this.totalDistanceMeters = totalDistanceMeters;
+
+        long seconds = java.time.Duration.between(this.startedAt, this.endedAt).getSeconds();
+        this.totalDurationSeconds = (int) seconds;
+
+        int minutes = this.totalDurationSeconds/60;
+        this.earnedPoint = minutes/20;
+    }
+    // 사진 인증이 성공햇을 때 부를 메서드
+    public void verifyPhoto(String endPhotoUrl) {
+        this.endPhotoUrl = endPhotoUrl;
+
+        this.verificationStatus = VerificationStatus.SUCCESS;
+    }
+
+
 }
