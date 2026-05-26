@@ -57,14 +57,13 @@ public class WalkSession {
     @Column(nullable = false, updatable = false)
     private LocalDateTime createdAt;
 
-
-    // 🌟 산책 '시작(생성)' 시점에 필요한 데이터만 받는 Builder
     @Builder
-    public WalkSession(User user, Dog dog, Double startLat, Double startLng) {
+    public WalkSession(User user, Dog dog, Double startLat, Double startLng, LocalDateTime startedAt, WalkStatus status) {
         this.user = user;
         this.dog = dog;
         this.status = WalkStatus.WALKING; // 생성과 동시에 산책 시작 상태로!
         this.startedAt = LocalDateTime.now();
+        this.endedAt = LocalDateTime.now();
         this.startLat = startLat;
         this.startLng = startLng;
         this.earnedPoint = 0;
@@ -89,9 +88,6 @@ public class WalkSession {
     // 사진 인증이 성공햇을 때 부를 메서드
     public void verifyPhoto(String endPhotoUrl) {
         this.endPhotoUrl = endPhotoUrl;
-
         this.verificationStatus = VerificationStatus.SUCCESS;
     }
-
-
 }

@@ -3,6 +3,8 @@ package com.example.dogwalk.walk.dto;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDateTime;
+
 @Getter
 @NoArgsConstructor
 public class WalkStartRequest {
