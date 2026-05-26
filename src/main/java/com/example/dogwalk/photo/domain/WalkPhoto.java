@@ -22,7 +22,7 @@ public class WalkPhoto {
 
     @Enumerated(EnumType.STRING)
     @Column(nullable = false, length = 20)
-    private WalkPhotoType type;
+    private PhotoType type;
 
     @Column(nullable = false, length = 500)
     private String imageUrl;
@@ -47,7 +47,7 @@ public class WalkPhoto {
     @Column(nullable = false, updatable = false)
     private LocalDateTime createdAt;
     @Builder
-    public WalkPhoto(WalkSession walkSession, WalkPhotoType type, String imageUrl,
+    public WalkPhoto(WalkSession walkSession, PhotoType type, String imageUrl,
                      Double lat, Double lng, LocalDateTime capturedAt,
                      boolean metadataVerified, boolean dogDetected, Integer verificationScore) {
         this.walkSession = walkSession;
