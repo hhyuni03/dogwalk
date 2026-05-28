@@ -1,6 +1,7 @@
 package com.example.dogwalk.photo.service;
 
 import com.example.dogwalk.photo.domain.WalkPhoto;
+import com.example.dogwalk.photo.dto.GalleryPhotoResponse;
 import com.example.dogwalk.photo.repository.WalkPhotoRepository;
 import com.example.dogwalk.walk.domain.WalkSession;
 import com.example.dogwalk.walk.repository.WalkRepository;
@@ -14,6 +15,7 @@ import org.springframework.web.multipart.MultipartFile;
 import java.io.File;
 import java.io.IOException;
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.UUID;
 
 @Service
@@ -56,4 +58,12 @@ public class WalkPhotoService {
         WalkPhoto savedPhoto = walkPhotoRepository.save(newPhoto);
         return savedPhoto.getId();
     }
+
+    public List<GalleryPhotoResponse> getUserGallery(Long userId){
+        List <WalkPhoto> photos = walkPhotoRepository.findGalleryByUserId(userId);
+        return photos.stream()
+                .map(GalleryPhotoResponse::new)
+                .toList();
+    }
+
 }

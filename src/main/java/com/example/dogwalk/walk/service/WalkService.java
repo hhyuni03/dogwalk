@@ -29,6 +29,7 @@ public class WalkService {
                 .orElseThrow(() -> new IllegalArgumentException("존재하지 않는 유저입니다."));
         Dog dog = dogRepository.findById(request.getDogId())
                 .orElseThrow(()-> new UnsupportedOperationException("존재하지 않는 강아지입니다."));
+
         WalkSession newSession = WalkSession.builder()
                 .user(user)
                 .dog(dog)

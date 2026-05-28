@@ -8,7 +8,6 @@ import java.util.List;
 @NoArgsConstructor
 public class RouteSaveRequest {
     private List<RoutePoint> points;
-
     @Getter
     @NoArgsConstructor
     public static class RoutePoint {

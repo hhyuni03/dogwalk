@@ -61,7 +61,7 @@ public class WalkSession {
     public WalkSession(User user, Dog dog, Double startLat, Double startLng, LocalDateTime startedAt, WalkStatus status) {
         this.user = user;
         this.dog = dog;
-        this.status = WalkStatus.WALKING; // 생성과 동시에 산책 시작 상태로!
+        this.status = WalkStatus.WALKING;
         this.startedAt = LocalDateTime.now();
         this.endedAt = LocalDateTime.now();
         this.startLat = startLat;

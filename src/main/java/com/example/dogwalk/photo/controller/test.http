@@ -1,0 +1,45 @@
+### 1. 산책 시작 테스트 (POST)
+# 유저 1번이 강아지 1번과 산책을 시작한다고 가정합니다.
+POST http://localhost:8080/api/walks/start
+Content-Type: application/json
+
+{
+  "userId": 1,
+  "dogId": 1,
+  "startLat": 37.5665,
+  "startLng": 126.9780
+}
+
+###
+
+### 2. 산책 경로 대량 저장 테스트 (POST)
+# 1번 산책 기록(walkSessionId=1)에 점 2개를 쏴봅니다.
+POST http://localhost:8080/api/walks/1/routes
+Content-Type: application/json
+
+{
+  "points": [
+    {
+      "sequence": 1,
+      "latitude": 37.5665,
+      "longitude": 126.9780,
+      "accuracy": 5.0,
+      "speed": 1.2,
+      "recordedAt": "2026-05-27T10:00:00"
+    },
+    {
+      "sequence": 2,
+      "latitude": 37.5668,
+      "longitude": 126.9782,
+      "accuracy": 4.5,
+      "speed": 1.5,
+      "recordedAt": "2026-05-27T10:00:05"
+    }
+  ]
+}
+
+###
+
+### 3. 유저 갤러리 조회 테스트 (GET)
+# 1번 유저의 사진첩을 열어달라고 요청합니다.
+GET http://localhost:8080/api/users/1/photos
