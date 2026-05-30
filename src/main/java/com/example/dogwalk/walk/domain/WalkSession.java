@@ -86,4 +86,8 @@ public class WalkSession {
         this.endPhotoUrl = endPhotoUrl;
         this.verificationStatus = VerificationStatus.SUCCESS;
     }
+    public void updateVerification(VerificationStatus status, int score) {
+        this.verificationStatus = status;
+        this.earnedPoint = score;
+    }
 }
