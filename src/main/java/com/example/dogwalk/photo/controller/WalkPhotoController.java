@@ -13,12 +13,12 @@ import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/api/walks")
+@RequestMapping("/api")
 
 public class WalkPhotoController {
     private final WalkPhotoService walkPhotoService;
 
-    @PostMapping(value = "/{walkSessionId}/photos", consumes = "multipart/form-data")
+    @PostMapping(value = "/walks/{walkSessionId}/photos", consumes = "multipart/form-data")
     public ResponseEntity<String> uploadWalkPhoto(
             @PathVariable long walkSessionId,
             @RequestParam("image") MultipartFile image,
@@ -30,7 +30,7 @@ public class WalkPhotoController {
         return ResponseEntity.ok("사진이 성공적을 저장되었습니다.");
     }
 
-    @GetMapping("/api/users/{userId}/photos")
+    @GetMapping("/users/{userId}/photos")
     public ResponseEntity<List<GalleryPhotoResponse>> getUserGallery(@PathVariable long userId) {
         List <GalleryPhotoResponse> gallery = walkPhotoService.getUserGallery(userId);
         return ResponseEntity.ok(gallery);

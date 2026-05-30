@@ -3,7 +3,6 @@ package com.example.dogwalk.walk.domain;
 import com.example.dogwalk.dog.domain.Dog;
 import com.example.dogwalk.user.domain.User;
 import jakarta.persistence.*;
-import jakarta.transaction.Transactional;
 import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
@@ -15,7 +14,6 @@ import java.time.LocalDateTime;
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class WalkSession {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -78,10 +76,8 @@ public class WalkSession {
         this.endedAt = LocalDateTime.now();
         this.status = WalkStatus.COMPLETED;
         this.totalDistanceMeters = totalDistanceMeters;
-
         long seconds = java.time.Duration.between(this.startedAt, this.endedAt).getSeconds();
         this.totalDurationSeconds = (int) seconds;
-
         int minutes = this.totalDurationSeconds/60;
         this.earnedPoint = minutes/20;
     }
