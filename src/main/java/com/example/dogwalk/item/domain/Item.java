@@ -34,11 +34,12 @@ public class Item {
     private boolean isActive = true;
 
     @Builder
-    public Item(String name, ItemType itemType, int price, int rarity, String imageUrl) {
+    public Item(String name, ItemType itemType, int price, int rarity, String imageUrl, boolean isActive) {
         this.name = name;
         this.itemType = itemType;
         this.price = price;
         this.rarity = rarity;
         this.imageUrl = imageUrl;
+        this.isActive = isActive;
     }
 }

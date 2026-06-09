@@ -81,4 +81,11 @@ public class User {
             requiredExp = this.level * 1000;
         }
     }
+
+    public void minusPoint(int itemPrice) {
+        if (this.currentPoint < itemPrice) {
+            throw new IllegalStateException("포인트가 부족합니다.");
+        }
+        this.currentPoint -= itemPrice;
+    }
 }
