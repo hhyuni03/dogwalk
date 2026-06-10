@@ -40,4 +40,11 @@ public class InventoryItem {
         this.isEquipped = false;
         this.ownedAt = LocalDateTime.now();
     }
+
+    public void equip() {
+        this.isEquipped = true;
+    }
+    public void unequip() {
+        this.isEquipped = false;
+    }
 }

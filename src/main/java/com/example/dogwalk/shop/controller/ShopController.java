@@ -18,7 +18,6 @@ public class ShopController {
     @PostMapping("/purchase")
     public ResponseEntity<String> purchaseItem(@RequestBody ShopRequest request) {
         shopService.purchaseItem(request.getUserId(), request.getItemId());
-
         return ResponseEntity.ok("아이템 구매가 완료되었습니다.");
     }
 }
